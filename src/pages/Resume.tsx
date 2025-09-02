@@ -33,7 +33,7 @@ const Resume: React.FC = () => {
         >
           {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
         </button>
-        <button
+        {/* <button
           onClick={() => {
             window.location.href = "/admin";
           }}
@@ -43,7 +43,7 @@ const Resume: React.FC = () => {
           }
         >
           <Settings size={20} />
-        </button>
+        </button> */}
       </div>
 
       <Header personalInfo={resumeData.personalInfo} />

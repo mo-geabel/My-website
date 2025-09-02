@@ -63,7 +63,16 @@ const Footer: React.FC<FooterProps> = ({ personalInfo }) => {
 
               <div className="flex items-center">
                 <MapPin size={18} className="mr-3 text-blue-400" />
-                <span>{personalInfo.location}</span>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    personalInfo.location
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center hover:text-blue-400 transition-colors"
+                >
+                  {personalInfo.location}
+                </a>
               </div>
             </div>
 
