@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { PersonalInfo } from "../../types";
-import { Github, Linkedin, Twitter, Globe, X } from "lucide-react";
+import { Github, Linkedin, Globe } from "lucide-react";
 import profilepic from "../../../Public/image/Profile.jpg";
+
 interface HeaderProps {
   personalInfo: PersonalInfo;
 }
@@ -22,19 +23,39 @@ const XLogo: React.FC<XLogoProps> = ({ size = 24, ...props }) => (
     <path d="M18.36 3H21L14.81 10.44L22.33 21H16.23L11.46 14.74L5.94 21H3L9.59 13.1L2.33 3H8.58L12.9 8.73L18.36 3ZM17.27 19.43H19.08L7.17 4.5H5.26L17.27 19.43Z" />
   </svg>
 );
+
 const Header: React.FC<HeaderProps> = ({ personalInfo }) => {
+  const [isZoomed, setIsZoomed] = useState(false);
+
   return (
     <header className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white">
       <div className="max-w-5xl mx-auto px-4 py-12 md:py-20">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
           {/* Profile Image */}
-          <div className="w-32 h-32 md:w-40 md:h-40 overflow-hidden rounded-full border-4 border-white shadow-lg">
+          <div
+            onClick={() => setIsZoomed(true)}
+            className="w-32 h-32 md:w-40 md:h-40 overflow-hidden rounded-full border-4 border-white shadow-lg cursor-pointer"
+          >
             <img
               src={profilepic}
               alt={personalInfo.name}
               className="w-full h-full object-cover"
             />
           </div>
+
+          {/* Zoomed-in Overlay */}
+          {isZoomed && (
+            <div
+              onClick={() => setIsZoomed(false)}
+              className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 cursor-zoom-out"
+            >
+              <img
+                src={profilepic}
+                alt={personalInfo.name}
+                className="max-w-[90%] max-h-[90%] rounded-lg shadow-xl"
+              />
+            </div>
+          )}
 
           {/* Name and Title */}
           <div className="text-center md:text-left">
@@ -47,7 +68,11 @@ const Header: React.FC<HeaderProps> = ({ personalInfo }) => {
 
             {/* Contact Info */}
             <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 mb-4 text-sm">
-              <div className="flex items-center">
+              {/* Email */}
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="flex items-center hover:underline"
+              >
                 <svg
                   className="w-4 h-4 mr-2"
                   fill="none"
@@ -63,8 +88,13 @@ const Header: React.FC<HeaderProps> = ({ personalInfo }) => {
                   />
                 </svg>
                 <span>{personalInfo.email}</span>
-              </div>
-              <div className="flex items-center">
+              </a>
+
+              {/* Phone */}
+              <a
+                href={`tel:${personalInfo.phone}`}
+                className="flex items-center hover:underline"
+              >
                 <svg
                   className="w-4 h-4 mr-2"
                   fill="none"
@@ -80,8 +110,17 @@ const Header: React.FC<HeaderProps> = ({ personalInfo }) => {
                   />
                 </svg>
                 <span>{personalInfo.phone}</span>
-              </div>
-              <div className="flex items-center">
+              </a>
+
+              {/* Location */}
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  personalInfo.location
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center hover:underline"
+              >
                 <svg
                   className="w-4 h-4 mr-2"
                   fill="none"
@@ -103,7 +142,7 @@ const Header: React.FC<HeaderProps> = ({ personalInfo }) => {
                   />
                 </svg>
                 <span>{personalInfo.location}</span>
-              </div>
+              </a>
             </div>
 
             {/* Social Links */}
