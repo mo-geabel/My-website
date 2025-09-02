@@ -1,7 +1,7 @@
 import candy from "../data/candycrash.png";
 import Assistant from "../data/assistant.png";
 import Earth from "../data/Earthquick.png";
-
+import cover from "../data/cover.png";
 export const defaultResumeData = {
   personalInfo: {
     name: "Mohammed Geabel",
@@ -107,8 +107,7 @@ export const defaultResumeData = {
         "As a team, we’ve just wrapped up and successfully presented our class project: “Exploratory Data Analysis on Turkish Housing Market” 📊",
       technologies: ["Jupyter", "Python", "Pandas", "Matplotlib"],
       link: "https://github.com/MamoMGD1/data_science_st",
-      image:
-        "https://raw.githubusercontent.com/MamoMGD1/data_science_st/main/images/cover.png",
+      image: cover,
     },
     {
       id: "2",
