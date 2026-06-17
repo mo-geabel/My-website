@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ personalInfo }) => {
             <img
               src={profilepic}
               alt={personalInfo.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-[1.8] origin-center"
             />
           </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Certificate } from '../../types';
-import { Award, ExternalLink } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 interface CertificatesProps {
   certificates: Certificate[];
@@ -42,17 +42,6 @@ const Certificates: React.FC<CertificatesProps> = ({ certificates }) => {
                   })}
                 </p>
               </div>
-              
-              {certificate.link && (
-                <a
-                  href={certificate.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium mt-2"
-                >
-                  View Certificate <ExternalLink size={16} className="ml-1" />
-                </a>
-              )}
             </div>
           ))}
         </div>
